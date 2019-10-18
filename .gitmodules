@@ -1,0 +1,4 @@
+[submodule "tools/format.sh"]
+	path = tools/format.sh
+	url = git@github.com:HeavenVolkoff/format.sh.git
+	branch = master

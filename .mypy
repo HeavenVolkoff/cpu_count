@@ -1,0 +1,5 @@
+--strict
+--implicit-reexport
+--ignore-missing-imports
+--python-executable=./.venv/bin/python
+--package=cpu_count

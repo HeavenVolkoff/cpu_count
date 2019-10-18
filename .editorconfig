@@ -1,0 +1,56 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[**.py]
+indent_size = 4
+indent_style = space
+# black config
+black_file=./black.toml
+# isort config
+quiet = True
+atomic = True
+not_skip = __init__.py
+line_length = 99
+length_sort = True
+combine_star = True
+order_by_type = True
+force_grid_wrap = 0
+use_parentheses = True
+multi_line_output = 3
+balanced_wrapping = True
+combine_as_imports = True
+import_heading_stdlib = Internal
+include_trailing_comma = True
+import_heading_thirdparty = External
+import_heading_firstparty = External
+import_heading_localfolder = Project
+
+[**.cfg]
+indent_size = 4
+indent_style = space
+
+[**.js]
+indent_size = 2
+indent_style = space
+
+[**.sh]
+ident_case = true
+indent_size = 4
+keep_padding = true
+indent_style = space
+language_variant = posix
+
+[Makefile]
+indent_style = tab
+
+[{package.json,.travis.yml}]
+indent_size = 2
+indent_style = space
