@@ -1,11 +1,10 @@
 # Internal
 import os
 import typing as T
-from os import cpu_count as os_cpu_count
 from math import ceil
+from posix import cpu_count as os_cpu_count
 from pathlib import Path
 from contextlib import suppress
-from multiprocessing import cpu_count as mp_cpu_count
 
 
 def cpu_count() -> T.Optional[int]:
@@ -13,8 +12,7 @@ def cpu_count() -> T.Optional[int]:
     available for the current python process.
 
     > The returned number of CPUs is the minimum (larger than 1) of the following constraints:
-     * the number of CPUs in the system, as given by `os.cpu_count`
-     * the number of CPUs in the system, as given by `multiprocessing.cpu_count`
+     * the number of CPUs in the system, as given by `posix.cpu_count`
      * the CPU affinity settings of the current process
         (available on some Unix systems)
      * CFS scheduler CPU bandwidth limit
@@ -31,17 +29,14 @@ def cpu_count() -> T.Optional[int]:
        Return the number of CPUs the current process can use.
 
     """
-    constraints = [None] * 4  # type: T.List[T.Optional[int]]
+    constraints = [None] * 3  # type: T.List[T.Optional[int]]
     constraints[0] = os_cpu_count()
-
-    with suppress(NotImplementedError):
-        constraints[1] = mp_cpu_count()
 
     # Number of available CPUs given affinity settings
     # More info: http://man7.org/linux/man-pages/man2/sched_setaffinity.2.html
     if hasattr(os, "sched_getaffinity"):
         with suppress(NotImplementedError):
-            constraints[2] = len(os.sched_getaffinity(0))
+            constraints[1] = len(os.sched_getaffinity(0))
 
     # CFS scheduler CPU bandwidth limit
     # More info: https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt
@@ -60,7 +55,10 @@ def cpu_count() -> T.Optional[int]:
             # time surplus, including fractions, must be allocated in extra cores to archive the
             # desired proportion, rounding up this value to the closest integer represents the
             # maximum number of cores this process can use simultaneously.
-            constraints[3] = int(ceil(cfs_quota / cfs_period))
+            constraints[2] = int(ceil(cfs_quota / cfs_period))
+
+    # TODO: Add Realtime Scheduler constrain
+    # More info: https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt
 
     values = tuple(constrain for constrain in constraints if constrain is not None)
     if not values:
@@ -68,7 +66,3 @@ def cpu_count() -> T.Optional[int]:
         return None
 
     return max(min(*values), 1)
-
-
-def cpu_count_best_guess() -> int:
-    return cpu_count() or 1
