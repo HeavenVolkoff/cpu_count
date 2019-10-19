@@ -2,7 +2,7 @@
 import os
 import typing as T
 from math import ceil
-from posix import cpu_count as os_cpu_count
+from posix import cpu_count as os_cpu_count  # type: ignore
 from pathlib import Path
 from contextlib import suppress
 
