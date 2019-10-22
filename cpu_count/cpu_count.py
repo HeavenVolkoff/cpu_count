@@ -57,7 +57,7 @@ def cpu_count() -> T.Optional[int]:
             # maximum number of cores this process can use simultaneously.
             constraints[2] = int(ceil(cfs_quota / cfs_period))
 
-    # TODO: Add Realtime Scheduler constrain
+    # TODO: Add Realtime Scheduler constraint
     # More info: https://www.kernel.org/doc/Documentation/scheduler/sched-rt-group.txt
 
     values = tuple(constrain for constrain in constraints if constrain is not None)
