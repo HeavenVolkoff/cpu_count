@@ -117,7 +117,7 @@ Thanks to [@tomMoral](https://github.com/tomMoral) for his
 code for this implementation.
 
 Thanks to [@Lothiraldan](https://github.com/Lothiraldan) for his in-depth guide
-on how to monkey patch python: [python-production-monkey-patching](https://github.com/Lothiraldan/python-production-monkey-patching),
+on how to monkey patch python: [python-production-monkey-patching](https://gitpitch.com/Lothiraldan/python-production-monkey-patching/master),
 which helped me a lot when constructing this module.
 
 ## License
