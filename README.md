@@ -48,8 +48,8 @@ one from this module (Affected internal modules are `posix`, `os` and
 code, just import and call `setup_monkey_patch` ate the begin of your
 application and everything will just work™.
 
-_Note: This will also impact in the behaviour of standard libraries that use
-this function_
+_Note: This will also impact the behaviour of standard libraries that use this
+function_
 
 ```python
 import os
