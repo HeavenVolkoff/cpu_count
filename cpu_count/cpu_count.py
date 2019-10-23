@@ -26,7 +26,7 @@ def cpu_count() -> T.Optional[int]:
         https://github.com/tomMoral/loky/blob/dc2d941d8285a96f3a5b666a4bd04875b0b25984/LICENSE.txt
 
     Returns:
-       Return the number of CPUs the current process can use.
+       The number of CPUs available to be used by the current process.
 
     """
     constraints = [None] * 3  # type: T.List[T.Optional[int]]

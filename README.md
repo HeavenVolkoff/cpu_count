@@ -104,9 +104,21 @@ python applications. An example of using this on a Dockerfile can be found
 All contributions are very welcome.
 
 Code styles is defined in the [Editorconfig](.editorconfig) file. Besides that
-I use black and isort for auto-format, their configurations are defined in the
-[Editorconfig](.editorconfig) and the [black.toml](black.toml) files
-respectively.
+I use [black](https://github.com/psf/black) and
+[isort](https://github.com/timothycrosley/isort) for auto-format, their
+configurations are defined in the [Editorconfig](.editorconfig) and the
+[black.toml](black.toml) files respectively. Also I use
+[mypy](https://github.com/timothycrosley/isort) for statical type check, it's
+configurations are in the [.mypy](.mypy) file.
+
+## Acknowledgement
+Thanks to [@tomMoral](https://github.com/tomMoral) for his
+[loky](https://github.com/tomMoral/loky) project, from which I took the base
+code for this implementation.
+
+Thanks to [@Lothiraldan](https://github.com/Lothiraldan) for his in-depth guide
+on how to monkey patch python: [python-production-monkey-patching](https://github.com/Lothiraldan/python-production-monkey-patching),
+which helped me a lot when constructing this module.
 
 ## License
 BSD 3-Clause “New” or “Revised” License
